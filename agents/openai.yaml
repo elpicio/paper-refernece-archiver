@@ -1,0 +1,7 @@
+interface:
+  display_name: "Paper Reference Archiver"
+  short_description: "Archive PDFs into paper_reference"
+  default_prompt: "Use $paper-reference-archiver to process new PDFs in paper_reference/temp, classify them, write summaries and translations, and update the index."
+
+policy:
+  allow_implicit_invocation: true
