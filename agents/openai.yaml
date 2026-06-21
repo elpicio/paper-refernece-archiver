@@ -1,7 +1,7 @@
 interface:
   display_name: "Paper Reference Archiver"
   short_description: "Archive PDFs into paper_reference"
-  default_prompt: "Use $paper-reference-archiver to process new PDFs in paper_reference/temp, classify them, write summaries and translations, and update the index."
+  default_prompt: "Use $paper-reference-archiver to process new PDFs in paper_reference/temp. Fully inspect every paper, classify it, write a detailed template-based reading summary, write a full Chinese translation of the main content, use subagents for paper-level writing when there are at least 3 papers, then update category summaries and the index."
 
 policy:
   allow_implicit_invocation: true

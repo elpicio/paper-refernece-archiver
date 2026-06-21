@@ -39,14 +39,28 @@ Read other references only when needed:
 8. Run:
    `python scripts/verify_paper_archive.py --root . --category "<touched-category>"`
 
+## Mandatory Reading and Writing Standard
+
+For every paper, the paper-level writer must inspect the full paper before writing. Do not rely only on the abstract, introduction, conclusion, metadata, or first-page excerpt.
+
+Each summary must be a detailed reading note, not a short abstract. It must follow `paper_reference/论文阅读总结模板.md` and cover the paper's motivation, problem setting, method, assumptions, datasets or experimental setup, main results, limitations, and reusable technical details. If a section contains substantive methods, experiments, formulas, algorithms, or claims, represent it in the summary with paper-location citations when practical.
+
+Each translation file must be a full Chinese translation of the paper's main content. Preserve the paper's section order, paragraph-level meaning, formulas, equation numbers, algorithm blocks, and important tables or figures. Do not replace body sections with brief summaries. Only repetitive appendix tables with little explanatory content may be compressed, and formulas, algorithm steps, and critical experimental settings must still be preserved.
+
+Summaries and translations must follow the language style and terminology rules in `references/writing-rules.md`: use natural Chinese research writing, avoid machine-translation-like phrasing, keep established technical terms in their conventional form, and reject commercial jargon or unsupported promotional language.
+
+If extraction quality prevents full reading or full translation, stop and report the blocker. Do not silently shorten the output.
+
 ## Ownership Rules
 
-When multiple papers are being processed, use subagents if that materially speeds up the task.
+When at least three papers are being processed, use subagents for paper-level writing unless the user explicitly asks not to, or the runtime environment makes subagents unavailable.
 
 - Main agent owns:
   category decisions, directory creation, PDF moves, `paper_reference/INDEX.md`, and all `研究方向总结.md`
 - Subagents own:
   paper-level summary and translation files only
+
+Every subagent assignment must explicitly include the mandatory reading and writing standard above, the repository summary template requirement, the language style and terminology rules, and the requirement to produce both the detailed summary and full Chinese translation for each assigned paper. The main agent must reject or revise subagent outputs that read like machine translation, force unnatural terminology translations, or contain commercial jargon or promotional phrasing.
 
 Do not let multiple agents write the same category summary or index file.
 

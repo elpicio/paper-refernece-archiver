@@ -37,7 +37,7 @@ Decision order:
 
 ## 3. Parallel Writing
 
-If there are at least 3 papers, split paper-level writing across subagents.
+If there are at least 3 papers, split paper-level writing across subagents unless the user explicitly asks not to, or subagents are unavailable in the runtime environment.
 
 Main agent keeps ownership of:
 
@@ -51,6 +51,8 @@ Subagents only write:
 - `<Title>.md`
 - `<Title> - 中文翻译.md`
 
+Each subagent assignment must require full-paper inspection, a detailed summary, and a full Chinese translation for every assigned paper. The assignment must state that a short abstract-level output is incomplete.
+
 ## 4. Per-Paper Files
 
 For each paper, produce:
@@ -61,15 +63,20 @@ For each paper, produce:
 
 Summary files must follow `paper_reference/论文阅读总结模板.md`.
 
+The summary file is a detailed reading note. It must cover the paper's motivation, problem setting, method, assumptions, datasets or experimental setup, main results, limitations, and reusable technical details. Do not summarize only the abstract, introduction, and conclusion. Every substantive method, experiment, formula, algorithm, or central claim in the paper should be represented with paper-location citations when practical.
+
 Translation files should preserve:
 
 - section structure
+- paragraph-level meaning of the main text
 - formulas
 - equation numbers
 - algorithm blocks
 - important tables and figures
 
-If a very long appendix contains repetitive numeric tables with little explanatory content, it may be summarized briefly, but formulas and methodological details should still be preserved.
+Translation files must be full Chinese translations of the paper's main content, not section summaries. Translate body sections in paper order. If a very long appendix contains repetitive numeric tables with little explanatory content, it may be summarized briefly, but formulas, algorithm steps, methodological details, and critical experimental settings should still be preserved.
+
+If text extraction quality makes full reading or full translation impossible, report the blocker and repair with rendered pages when practical. Do not silently shorten the output.
 
 ## 5. Formula and Table Recovery
 
