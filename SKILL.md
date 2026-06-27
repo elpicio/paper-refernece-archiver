@@ -6,7 +6,9 @@ description: >-
   summaries from the repository template, produce Chinese full translations,
   repair formulas or tables via PDF page rendering plus vision when text
   extraction is damaged, move PDFs into target folders, update
-  `paper_reference/INDEX.md`, and refresh category `研究方向总结.md`.
+  `paper_reference/INDEX.md`, verify citation metadata against official sources,
+  correct title, venue, year, DOI, official link, publication status, and refresh
+  category `研究方向总结.md`.
 ---
 
 # Paper Reference Archiver
@@ -19,6 +21,7 @@ Read [references/workflow.md](references/workflow.md) at the start of the task.
 Read other references only when needed:
 
 - Read [references/classification-rules.md](references/classification-rules.md) when deciding whether a paper belongs to an existing category or requires a new one.
+- Read [references/reference-indexing-workflow.md](references/reference-indexing-workflow.md) before updating `paper_reference/INDEX.md`, correcting title, venue, year, DOI, official link, publication status, or using the archive as citation evidence.
 - Read [references/writing-rules.md](references/writing-rules.md) before writing summaries, translations, or `研究方向总结.md`.
 - Read [references/verification-checklist.md](references/verification-checklist.md) before reporting completion.
 
@@ -28,16 +31,25 @@ Read other references only when needed:
    `python scripts/scan_temp_papers.py --root .`
 2. For any ambiguous paper, inspect it more closely with:
    `python scripts/extract_pdf_signals.py --root . --pdf <relative-pdf-path>`
-3. Decide the target category. Prefer an existing category unless the paper batch clearly defines a new direction.
-4. Write per-paper files:
+3. Run the reference indexing subtask for title, venue, year, DOI, official link, publication status, and any report-facing citation metadata.
+4. Decide the target category. Prefer an existing category unless the paper batch clearly defines a new direction.
+5. Write per-paper files:
    summary `.md` from `paper_reference/论文阅读总结模板.md`
    translation ` - 中文翻译.md`
-5. Only after per-paper files are ready, move each PDF into its final category directory.
-6. Update `paper_reference/INDEX.md` with:
+6. Only after per-paper files are ready, move each PDF into its final category directory.
+7. Update `paper_reference/INDEX.md` with:
    `python scripts/update_paper_index.py --root .`
-7. Update each touched category's `研究方向总结.md`.
-8. Run:
+8. Update each touched category's `研究方向总结.md`.
+9. Run:
    `python scripts/verify_paper_archive.py --root . --category "<touched-category>"`
+
+## Reference Indexing Rule
+
+Do not treat a failed search as evidence that a paper is unpublished, non-main,
+or not formally accepted. Formal publication metadata must be based on official
+venue, journal, proceedings, anthology, publisher, DOI, or equivalent sources.
+When official evidence is not found after a bounded search, keep the field as
+`待核查` and record the evidence gap.
 
 ## Mandatory Reading and Writing Standard
 

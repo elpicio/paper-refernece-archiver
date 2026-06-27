@@ -25,7 +25,26 @@ Use the result to inspect:
 - keyword hits
 - category signal counts
 
-## 2. Classification
+## 2. Reference Indexing Subtask
+
+Read `reference-indexing-workflow.md` before changing title, venue, year, DOI,
+official link, publication status, `paper_reference/INDEX.md`, report references,
+or baseline-facing citation metadata.
+
+For each affected paper:
+
+- collect local claims from PDFs, summaries, index files, report drafts, audit
+  data, and category summaries
+- verify formal publication metadata against official venue, journal,
+  proceedings, anthology, publisher, DOI, or equivalent sources
+- record an evidence table when the change affects a report, baseline decision,
+  survey conclusion, or more than one local file
+- use `待核查` when official evidence is not found after a bounded search
+
+Do not infer that a paper is unpublished, non-main, or not accepted from a failed
+search. That conclusion needs positive evidence.
+
+## 3. Classification
 
 Read `classification-rules.md` before assigning categories.
 
@@ -35,7 +54,7 @@ Decision order:
 2. Create a new category only when no existing category fits cleanly and the direction is likely to recur, or the user explicitly asks for a new category.
 3. When in doubt between two categories, classify by the paper's main contribution, not by a secondary technique.
 
-## 3. Parallel Writing
+## 4. Parallel Writing
 
 If there are at least 3 papers, split paper-level writing across subagents unless the user explicitly asks not to, or subagents are unavailable in the runtime environment.
 
@@ -53,7 +72,7 @@ Subagents only write:
 
 Each subagent assignment must require full-paper inspection, a detailed summary, and a full Chinese translation for every assigned paper. The assignment must state that a short abstract-level output is incomplete.
 
-## 4. Per-Paper Files
+## 5. Per-Paper Files
 
 For each paper, produce:
 
@@ -78,7 +97,7 @@ Translation files must be full Chinese translations of the paper's main content,
 
 If text extraction quality makes full reading or full translation impossible, report the blocker and repair with rendered pages when practical. Do not silently shorten the output.
 
-## 5. Formula and Table Recovery
+## 6. Formula and Table Recovery
 
 When text extraction is damaged:
 
@@ -100,13 +119,13 @@ This step is required for formula damage such as:
 - split equations
 - tables with merged columns
 
-## 6. Move PDFs
+## 7. Move PDFs
 
 Only move PDFs after the paper-level files are done.
 
 Keep the original PDF filename unless there is an explicit repo convention to rename it.
 
-## 7. Update Shared Files
+## 8. Update Shared Files
 
 Update index with:
 
@@ -118,7 +137,7 @@ Then manually update every touched category's `研究方向总结.md`.
 
 If a new category is created, add its own `研究方向总结.md`.
 
-## 8. Verify
+## 9. Verify
 
 Run:
 
@@ -132,5 +151,7 @@ Before reporting completion, confirm:
 - no summary links still point to `../temp/`
 - every new paper has summary, translation, and linked PDF
 - `INDEX.md` count matches actual paper count
+- title, venue, year, DOI, official link, and publication status follow
+  `reference-indexing-workflow.md`
 
 If the repository already contains older archive inconsistencies outside the current task, restrict verification to the categories you touched.
